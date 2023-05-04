@@ -1,0 +1,587 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x3A8BB077E1AFF48D",
+      "device": "xc7z010clg400-1",
+      "gen_directory": "../../../../ConstantVoltage.gen/sources_1/bd/constant_voltage_diagram",
+      "name": "constant_voltage_diagram",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "None",
+      "tool_version": "2020.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "xadc_wiz_0": "",
+      "xlconstant_0": "",
+      "mux_setpoint_0": "",
+      "xlconstant_1": "",
+      "xlconstant_2": "",
+      "xlconstant_3": "",
+      "xlconstant_4": "",
+      "xlconstant_5": "",
+      "xlconstant_6": "",
+      "xlconstant_7": "",
+      "rst_clock_100M": "",
+      "system_ila_0": "",
+      "voltage_data_0": "",
+      "constant_voltage_0": ""
+    },
+    "interface_ports": {
+      "Vaux14": {
+        "mode": "Slave",
+        "vlnv": "xilinx.com:interface:diff_analog_io_rtl:1.0"
+      }
+    },
+    "ports": {
+      "resetn": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "default"
+          }
+        }
+      },
+      "clock": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "resetn",
+            "value_src": "default"
+          },
+          "CLK_DOMAIN": {
+            "value": "constant_voltage_diagram_clock",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
+          }
+        }
+      },
+      "switch": {
+        "direction": "I",
+        "left": "2",
+        "right": "0"
+      },
+      "pwm": {
+        "direction": "O"
+      },
+      "analyze": {
+        "direction": "O"
+      }
+    },
+    "components": {
+      "xadc_wiz_0": {
+        "vlnv": "xilinx.com:ip:xadc_wiz:3.3",
+        "xci_name": "constant_voltage_diagram_xadc_wiz_0_0",
+        "xci_path": "ip/constant_voltage_diagram_xadc_wiz_0_0/constant_voltage_diagram_xadc_wiz_0_0.xci",
+        "inst_hier_path": "xadc_wiz_0",
+        "parameters": {
+          "ENABLE_AXI4STREAM": {
+            "value": "true"
+          },
+          "ENABLE_RESET": {
+            "value": "true"
+          },
+          "ENABLE_VCCDDRO_ALARM": {
+            "value": "false"
+          },
+          "ENABLE_VCCPAUX_ALARM": {
+            "value": "false"
+          },
+          "ENABLE_VCCPINT_ALARM": {
+            "value": "false"
+          },
+          "INTERFACE_SELECTION": {
+            "value": "None"
+          },
+          "OT_ALARM": {
+            "value": "false"
+          },
+          "SINGLE_CHANNEL_SELECTION": {
+            "value": "VAUXP14_VAUXN14"
+          },
+          "USER_TEMP_ALARM": {
+            "value": "false"
+          },
+          "VCCAUX_ALARM": {
+            "value": "false"
+          },
+          "VCCINT_ALARM": {
+            "value": "false"
+          }
+        }
+      },
+      "xlconstant_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "constant_voltage_diagram_xlconstant_0_0",
+        "xci_path": "ip/constant_voltage_diagram_xlconstant_0_0/constant_voltage_diagram_xlconstant_0_0.xci",
+        "inst_hier_path": "xlconstant_0"
+      },
+      "mux_setpoint_0": {
+        "vlnv": "xilinx.com:module_ref:mux_setpoint:1.0",
+        "xci_name": "constant_voltage_diagram_mux_setpoint_0_0",
+        "xci_path": "ip/constant_voltage_diagram_mux_setpoint_0_0/constant_voltage_diagram_mux_setpoint_0_0.xci",
+        "inst_hier_path": "mux_setpoint_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "mux_setpoint",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "a": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "b": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "c": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "d": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "e": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "f": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "g": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "s": {
+            "direction": "I",
+            "left": "2",
+            "right": "0"
+          },
+          "y": {
+            "direction": "O",
+            "left": "11",
+            "right": "0"
+          }
+        }
+      },
+      "xlconstant_1": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "constant_voltage_diagram_xlconstant_1_0",
+        "xci_path": "ip/constant_voltage_diagram_xlconstant_1_0/constant_voltage_diagram_xlconstant_1_0.xci",
+        "inst_hier_path": "xlconstant_1",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "409"
+          },
+          "CONST_WIDTH": {
+            "value": "12"
+          }
+        }
+      },
+      "xlconstant_2": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "constant_voltage_diagram_xlconstant_1_1",
+        "xci_path": "ip/constant_voltage_diagram_xlconstant_1_1/constant_voltage_diagram_xlconstant_1_1.xci",
+        "inst_hier_path": "xlconstant_2",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "1228"
+          },
+          "CONST_WIDTH": {
+            "value": "12"
+          }
+        }
+      },
+      "xlconstant_3": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "constant_voltage_diagram_xlconstant_2_0",
+        "xci_path": "ip/constant_voltage_diagram_xlconstant_2_0/constant_voltage_diagram_xlconstant_2_0.xci",
+        "inst_hier_path": "xlconstant_3",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "1638"
+          },
+          "CONST_WIDTH": {
+            "value": "12"
+          }
+        }
+      },
+      "xlconstant_4": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "constant_voltage_diagram_xlconstant_3_0",
+        "xci_path": "ip/constant_voltage_diagram_xlconstant_3_0/constant_voltage_diagram_xlconstant_3_0.xci",
+        "inst_hier_path": "xlconstant_4",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "2129"
+          },
+          "CONST_WIDTH": {
+            "value": "12"
+          }
+        }
+      },
+      "xlconstant_5": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "constant_voltage_diagram_xlconstant_4_0",
+        "xci_path": "ip/constant_voltage_diagram_xlconstant_4_0/constant_voltage_diagram_xlconstant_4_0.xci",
+        "inst_hier_path": "xlconstant_5",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "2457"
+          },
+          "CONST_WIDTH": {
+            "value": "12"
+          }
+        }
+      },
+      "xlconstant_6": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "constant_voltage_diagram_xlconstant_5_0",
+        "xci_path": "ip/constant_voltage_diagram_xlconstant_5_0/constant_voltage_diagram_xlconstant_5_0.xci",
+        "inst_hier_path": "xlconstant_6",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "2867"
+          },
+          "CONST_WIDTH": {
+            "value": "12"
+          }
+        }
+      },
+      "xlconstant_7": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "constant_voltage_diagram_xlconstant_6_0",
+        "xci_path": "ip/constant_voltage_diagram_xlconstant_6_0/constant_voltage_diagram_xlconstant_6_0.xci",
+        "inst_hier_path": "xlconstant_7",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "3276"
+          },
+          "CONST_WIDTH": {
+            "value": "12"
+          }
+        }
+      },
+      "rst_clock_100M": {
+        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
+        "xci_name": "constant_voltage_diagram_rst_clock_100M_0",
+        "xci_path": "ip/constant_voltage_diagram_rst_clock_100M_0/constant_voltage_diagram_rst_clock_100M_0.xci",
+        "inst_hier_path": "rst_clock_100M"
+      },
+      "system_ila_0": {
+        "vlnv": "xilinx.com:ip:system_ila:1.1",
+        "xci_name": "constant_voltage_diagram_system_ila_0_0",
+        "xci_path": "ip/constant_voltage_diagram_system_ila_0_0/constant_voltage_diagram_system_ila_0_0.xci",
+        "inst_hier_path": "system_ila_0",
+        "parameters": {
+          "C_MON_TYPE": {
+            "value": "NATIVE"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "10"
+          }
+        }
+      },
+      "voltage_data_0": {
+        "vlnv": "xilinx.com:module_ref:voltage_data:1.0",
+        "xci_name": "constant_voltage_diagram_voltage_data_0_0",
+        "xci_path": "ip/constant_voltage_diagram_voltage_data_0_0/constant_voltage_diagram_voltage_data_0_0.xci",
+        "inst_hier_path": "voltage_data_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "voltage_data",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clock": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "resetn",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "constant_voltage_diagram_clock",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "resetn": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "constant"
+              }
+            }
+          },
+          "xadc_data": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "voltage": {
+            "direction": "O",
+            "left": "11",
+            "right": "0"
+          }
+        }
+      },
+      "constant_voltage_0": {
+        "vlnv": "xilinx.com:module_ref:constant_voltage:1.0",
+        "xci_name": "constant_voltage_diagram_constant_voltage_0_0",
+        "xci_path": "ip/constant_voltage_diagram_constant_voltage_0_0/constant_voltage_diagram_constant_voltage_0_0.xci",
+        "inst_hier_path": "constant_voltage_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "constant_voltage",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clock": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "resetn",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "constant_voltage_diagram_clock",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "resetn": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "constant"
+              }
+            }
+          },
+          "voltage": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "set_point": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "count_pwm": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "count_timer": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "count_refresh": {
+            "direction": "O",
+            "left": "12",
+            "right": "0"
+          },
+          "enable_count": {
+            "direction": "O"
+          },
+          "dir": {
+            "direction": "O",
+            "left": "1",
+            "right": "0"
+          },
+          "pwm": {
+            "direction": "O"
+          }
+        }
+      }
+    },
+    "interface_nets": {
+      "Vaux14_0_1": {
+        "interface_ports": [
+          "Vaux14",
+          "xadc_wiz_0/Vaux14"
+        ]
+      }
+    },
+    "nets": {
+      "xlconstant_0_dout": {
+        "ports": [
+          "xlconstant_0/dout",
+          "xadc_wiz_0/m_axis_tready"
+        ]
+      },
+      "m_axis_resetn_0_1": {
+        "ports": [
+          "resetn",
+          "xadc_wiz_0/m_axis_resetn",
+          "rst_clock_100M/ext_reset_in"
+        ]
+      },
+      "s_axis_aclk_0_1": {
+        "ports": [
+          "clock",
+          "xadc_wiz_0/s_axis_aclk",
+          "xadc_wiz_0/m_axis_aclk",
+          "rst_clock_100M/slowest_sync_clk",
+          "system_ila_0/clk",
+          "voltage_data_0/clock",
+          "constant_voltage_0/clock"
+        ]
+      },
+      "xlconstant_1_dout": {
+        "ports": [
+          "xlconstant_1/dout",
+          "mux_setpoint_0/a"
+        ]
+      },
+      "xlconstant_2_dout": {
+        "ports": [
+          "xlconstant_2/dout",
+          "mux_setpoint_0/b"
+        ]
+      },
+      "xlconstant_3_dout": {
+        "ports": [
+          "xlconstant_3/dout",
+          "mux_setpoint_0/c"
+        ]
+      },
+      "xlconstant_4_dout": {
+        "ports": [
+          "xlconstant_4/dout",
+          "mux_setpoint_0/d"
+        ]
+      },
+      "xlconstant_5_dout": {
+        "ports": [
+          "xlconstant_5/dout",
+          "mux_setpoint_0/e"
+        ]
+      },
+      "xlconstant_6_dout": {
+        "ports": [
+          "xlconstant_6/dout",
+          "mux_setpoint_0/f"
+        ]
+      },
+      "xlconstant_7_dout": {
+        "ports": [
+          "xlconstant_7/dout",
+          "mux_setpoint_0/g"
+        ]
+      },
+      "s_0_1": {
+        "ports": [
+          "switch",
+          "mux_setpoint_0/s"
+        ]
+      },
+      "rst_clock_100M_peripheral_aresetn": {
+        "ports": [
+          "rst_clock_100M/peripheral_aresetn",
+          "system_ila_0/probe3",
+          "voltage_data_0/resetn",
+          "constant_voltage_0/resetn"
+        ]
+      },
+      "mux_setpoint_0_y": {
+        "ports": [
+          "mux_setpoint_0/y",
+          "system_ila_0/probe1",
+          "constant_voltage_0/set_point"
+        ]
+      },
+      "xadc_wiz_0_m_axis_tdata": {
+        "ports": [
+          "xadc_wiz_0/m_axis_tdata",
+          "system_ila_0/probe0",
+          "voltage_data_0/xadc_data"
+        ]
+      },
+      "constant_voltage_0_pwm": {
+        "ports": [
+          "constant_voltage_0/pwm",
+          "pwm",
+          "analyze",
+          "system_ila_0/probe2"
+        ]
+      },
+      "voltage_data_0_voltage": {
+        "ports": [
+          "voltage_data_0/voltage",
+          "system_ila_0/probe4",
+          "constant_voltage_0/voltage"
+        ]
+      },
+      "constant_voltage_0_count_pwm": {
+        "ports": [
+          "constant_voltage_0/count_pwm",
+          "system_ila_0/probe5"
+        ]
+      },
+      "constant_voltage_0_count_timer": {
+        "ports": [
+          "constant_voltage_0/count_timer",
+          "system_ila_0/probe6"
+        ]
+      },
+      "constant_voltage_0_enable_count": {
+        "ports": [
+          "constant_voltage_0/enable_count",
+          "system_ila_0/probe8"
+        ]
+      },
+      "constant_voltage_0_dir": {
+        "ports": [
+          "constant_voltage_0/dir",
+          "system_ila_0/probe9"
+        ]
+      },
+      "constant_voltage_0_count_refresh": {
+        "ports": [
+          "constant_voltage_0/count_refresh",
+          "system_ila_0/probe7"
+        ]
+      }
+    }
+  }
+}
