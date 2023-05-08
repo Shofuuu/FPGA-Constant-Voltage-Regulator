@@ -1,12 +1,11 @@
 `timescale 1ns / 1ps
 
-module constant_voltage(clock, resetn, voltage, set_point, count_pwm, count_timer, count_refresh, enable_count, dir, pwm);
+module constant_voltage(clock, resetn, xadc_data, set_point, count_pwm, count_timer, count_refresh, enable_count, dir, adc_voltage, pwm);
 
     // Inputs
     input clock;
     input resetn;
-//    input [15:0] xadc_data;
-    input [11:0] voltage;
+    input [15:0] xadc_data;
     input [11:0] set_point;
     
     // Output
@@ -15,6 +14,7 @@ module constant_voltage(clock, resetn, voltage, set_point, count_pwm, count_time
     output [10:0] count_timer;
     output [12:0] count_refresh;
     output enable_count;
+    output [11:0] adc_voltage;
     output [1:0] dir;
     
     localparam IDLE = 2'b00;
@@ -28,15 +28,34 @@ module constant_voltage(clock, resetn, voltage, set_point, count_pwm, count_time
     reg [10:0] counter_timer = 0;
     reg enable_counter = 0;
     
-//    voltage_data voltage_data0(
-//        .clock(clock),
-//        .resetn(resetn),
-//        .xadc_data(xadc_data),
-//        .voltage(voltage)
-//    );
+    voltage_data voltage_data0(
+        .clock(clock),
+        .resetn(resetn),
+        .xadc_data(xadc_data),
+        .voltage(voltage)
+    );
+
+    assign adc_voltage = voltage;
+
+    localparam REFRESH_CYCLE = 5500;
+    reg [12:0] refresh_count = 0;
     
-//    assign direction = (set_point >= (voltage-5)) & (set_point <= (voltage+5)) ? IDLE : // if set_point is larger than increase the pwm (1) otherwise 0
-//                       (set_point > (voltage+5)) ? INCREASE : DECREASE;
+    // store the pwm value at the refresh rate
+    always @ (posedge(clock), negedge(resetn)) begin
+        if (!resetn) begin
+            refresh_count <= 0;
+            enable_counter <= 0;
+        end
+        else begin
+            if (refresh_count < REFRESH_CYCLE) begin
+                refresh_count <= refresh_count + 1;
+            end
+            else begin
+                refresh_count <= 1;
+                enable_counter <= !enable_counter;
+            end
+        end
+    end
 
     // Determine the direction of PWM set
     always @ (posedge(enable_counter), negedge(resetn)) begin
@@ -46,7 +65,7 @@ module constant_voltage(clock, resetn, voltage, set_point, count_pwm, count_time
         else begin
             if ((set_point >= (voltage-5)) & (set_point <= (voltage + 10)))
                 direction <= IDLE;
-            else if ((set_point > (voltage+10)))
+            else if ((set_point > (voltage+5)))
                 direction <= INCREASE;
             else if ((set_point < (voltage-5)))
                 direction <= DECREASE;
@@ -56,7 +75,7 @@ module constant_voltage(clock, resetn, voltage, set_point, count_pwm, count_time
     end
 
     // set counter for PWM value
-    always @ (posedge(enable_counter), negedge(resetn)) begin
+    always @ (negedge(enable_counter), negedge(resetn)) begin
         if (!resetn) begin
             counter_pwm <= 0;
         end
@@ -81,32 +100,13 @@ module constant_voltage(clock, resetn, voltage, set_point, count_pwm, count_time
         end
     end
     
-    reg [12:0] refresh_count = 0;
-    
-    // store the pwm value at the refresh rate
-    always @ (posedge(clock), negedge(resetn)) begin
-        if (!resetn) begin
-            refresh_count <= 0;
-            enable_counter <= 0;
-        end
-        else begin
-            if (refresh_count < 6500) begin
-                refresh_count <= refresh_count + 1;
-            end
-            else begin
-                refresh_count <= 0;
-                enable_counter <= !enable_counter;
-            end
-        end
-    end
-    
     // free counter running
     always @ (posedge(clock), negedge(resetn)) begin
         if (!resetn)
             counter_timer <= 0;
         else begin
             if (counter_timer > 1240) begin
-                counter_timer <= 0;
+                counter_timer <= 1;
             end
             else begin
                 counter_timer <= counter_timer + 1;

@@ -20,10 +20,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module mux_setpoint(a, b, c, d, e, f, g, s, y);
+module mux_setpoint(a, b, c, d, e, f, g, h, s, y);
 
     // Inputs
-    input [11:0] a, b, c, d, e, f, g;
+    input [11:0] a, b, c, d, e, f, g, h;
     input [2:0] s;
     
     // Output
@@ -35,6 +35,7 @@ module mux_setpoint(a, b, c, d, e, f, g, s, y);
                (s == 3'b011) ? d :
                (s == 3'b100) ? e :
                (s == 3'b101) ? f :
-               (s == 3'b110) ? g : g;
+               (s == 3'b110) ? g :
+               (s == 3'b111) ? h : a;
 
 endmodule
